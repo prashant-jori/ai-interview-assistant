@@ -30,7 +30,7 @@ function App() {
   // ---------------- FUNCTIONS (सर्व सुरक्षित आहेत) ----------------
   const handleLogin = async () => {
     try {
-      await axios.post("https://ai-interview-assistant-1-hwco.onrender.com", {
+      await axios.post("https://ai-interview-assistant-1-hwco.onrender.com/login", {
         email,
         password
       });
