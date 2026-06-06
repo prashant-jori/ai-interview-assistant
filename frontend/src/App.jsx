@@ -30,14 +30,14 @@ function App() {
 
   // ---------------- FUNCTIONS (सर्व सुरक्षित आहेत) ----------------
   const handleLogin = async () => {
-  try {
-    const res = await axios.post(
-      `${BACKEND_URL}/login`,
-      {
-        email,
-        password
-      }
-    );
+    try {
+      const res = await axios.post(
+        `${BACKEND_URL}/login`,
+        {
+          email,
+          password
+        }
+      );
 
     alert(res.data.message || "Login Success 🚀");
     setLoggedIn(true);
