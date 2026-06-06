@@ -22,8 +22,8 @@ print("API Key Loaded:", GEMINI_API_KEY)
 
 genai.configure(api_key=GEMINI_API_KEY)
 # Models list
-for model in genai.list_models():
-    print(model.name)
+model = genai.GenerativeModel("gemini-1.5-flash")
+
 
 # ---------------- FLASK ----------------
 
