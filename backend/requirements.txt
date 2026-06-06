@@ -1,6 +1,8 @@
 fastapi
 uvicorn
-google-generativeai
+flask
+flask-cors
+PyPDF2
 python-dotenv
-pypdf
-python-multipart
+requests
+google-generativeai
