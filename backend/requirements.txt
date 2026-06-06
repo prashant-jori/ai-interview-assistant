@@ -8,4 +8,4 @@ requests
 google-generativeai
 flask-bcrypt
 flask-sqlalchemy
-speech_recognition
+SpeechRecognition
