@@ -57,7 +57,7 @@ function App() {
     formData.append("pdf", file);
 
     try {
-      await axios.post("http://127.0.0.1:5000/upload-pdf", formData, {
+      await axios.post("https://ai-interview-assistant-1-hwco.onrender.com/upload-pdf", formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
       setUploadMsg("PDF Uploaded Successfully 🚀");
@@ -69,7 +69,7 @@ function App() {
 
   const readPDF = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:5000/read-pdf");
+      const res = await axios.get("https://ai-interview-assistant-1-hwco.onrender.com/read-pdf");
       setPdfText(res.data.pdf_text);
     } catch (err) {
       console.log(err);
@@ -79,7 +79,7 @@ function App() {
   const generateQuestions = async () => {
     setLoading(true);
     try {
-      const res = await axios.post("http://127.0.0.1:5000/generate-questions", {}, {
+      const res = await axios.post("https://ai-interview-assistant-1-hwco.onrender.com/generate-questions", {}, {
         headers: { "Content-Type": "application/json" }
       });
       setQuestions(res.data.questions);
@@ -92,7 +92,7 @@ function App() {
 
   const evaluateVoiceAnswer = async () => {
     try {
-      const res = await axios.post("http://127.0.0.1:5000/evaluate-voice-answer", {
+      const res = await axios.post("https://ai-interview-assistant-1-hwco.onrender.com/evaluate-voice-answer", {
         email,
         question,
         answer: voiceAnswer || voiceText,
@@ -115,7 +115,7 @@ function App() {
 
   const getResultsHistory = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:5000/results-history");
+      const res = await axios.get("https://ai-interview-assistant-1-hwco.onrender.com/results-history");
       setResults(res.data);
     } catch (err) {
       console.log(err);
@@ -127,7 +127,7 @@ function App() {
     if (window.confirm("Are you sure you want to clear all history? 📋")) {
       try {
         // तुमच्या Flask बॅकएंडला delete रिक्वेस्ट पाठवण्यासाठी
-        await axios.delete("http://127.0.0.1:5000/clear-history"); 
+        await axios.delete("https://ai-interview-assistant-1-hwco.onrender.com/clear-history"); 
         setResults([]); // फ्रंटएंड स्टेट रिकामी करा
         alert("History Cleared Successfully! 🧹");
       } catch (err) {
