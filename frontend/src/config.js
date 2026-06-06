@@ -1,0 +1,1 @@
+export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://ai-interview-assistant-1-hwco.onrender.com";

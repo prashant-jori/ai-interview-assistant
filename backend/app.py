@@ -9,7 +9,6 @@ import google.generativeai as genai
 import os
 import speech_recognition as sr
 import re
-from flask_cors import CORS
 # ---------------- LOAD ENV ----------------
 
 load_dotenv()
@@ -29,13 +28,7 @@ model = genai.GenerativeModel("gemini-1.5-flash")
 
 app = Flask(__name__)
 
-from flask_cors import CORS
-
-CORS(app, origins=[
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "https://ai-interview-proj.netlify.app"
-])
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
 bcrypt = Bcrypt(app)
 

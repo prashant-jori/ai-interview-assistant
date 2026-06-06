@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import Analytics from "./Analytics";
 import './App.css'
-import { loginUser } from "./api";
+import { BACKEND_URL } from "./config";
 
 function App() {
 
@@ -32,7 +32,7 @@ function App() {
   const handleLogin = async () => {
   try {
     const res = await axios.post(
-      "https://ai-interview-assistant-1-hwco.onrender.com/login",
+      `${BACKEND_URL}/login`,
       {
         email,
         password
@@ -57,7 +57,7 @@ function App() {
     formData.append("pdf", file);
 
     try {
-      await axios.post("https://ai-interview-assistant-1-hwco.onrender.com/upload-pdf", formData, {
+      await axios.post(`${BACKEND_URL}/upload-pdf`, formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
       setUploadMsg("PDF Uploaded Successfully 🚀");
@@ -69,7 +69,7 @@ function App() {
 
   const readPDF = async () => {
     try {
-      const res = await axios.get("https://ai-interview-assistant-1-hwco.onrender.com/read-pdf");
+      const res = await axios.get(`${BACKEND_URL}/read-pdf`);
       setPdfText(res.data.pdf_text);
     } catch (err) {
       console.log(err);
@@ -79,7 +79,7 @@ function App() {
   const generateQuestions = async () => {
     setLoading(true);
     try {
-      const res = await axios.post("https://ai-interview-assistant-1-hwco.onrender.com/generate-questions", {}, {
+      const res = await axios.post(`${BACKEND_URL}/generate-questions`, {}, {
         headers: { "Content-Type": "application/json" }
       });
       setQuestions(res.data.questions);
@@ -92,7 +92,7 @@ function App() {
 
   const evaluateVoiceAnswer = async () => {
     try {
-      const res = await axios.post("https://ai-interview-assistant-1-hwco.onrender.com/evaluate-voice-answer", {
+      const res = await axios.post(`${BACKEND_URL}/evaluate-voice-answer`, {
         email,
         question,
         answer: voiceAnswer || voiceText,
@@ -115,7 +115,7 @@ function App() {
 
   const getResultsHistory = async () => {
     try {
-      const res = await axios.get("https://ai-interview-assistant-1-hwco.onrender.com/results-history");
+      const res = await axios.get(`${BACKEND_URL}/results-history`);
       setResults(res.data);
     } catch (err) {
       console.log(err);
@@ -127,7 +127,7 @@ function App() {
     if (window.confirm("Are you sure you want to clear all history? 📋")) {
       try {
         // तुमच्या Flask बॅकएंडला delete रिक्वेस्ट पाठवण्यासाठी
-        await axios.delete("https://ai-interview-assistant-1-hwco.onrender.com/clear-history"); 
+        await axios.delete(`${BACKEND_URL}/clear-history`); 
         setResults([]); // फ्रंटएंड स्टेट रिकामी करा
         alert("History Cleared Successfully! 🧹");
       } catch (err) {

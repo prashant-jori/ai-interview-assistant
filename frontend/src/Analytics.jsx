@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { BACKEND_URL } from "./config";
 
 import {
   LineChart,
@@ -29,7 +30,7 @@ function Analytics() {
     try {
 
       const res = await axios.get(
-        "http://127.0.0.1:5000/results-history"
+        `${BACKEND_URL}/results-history`
       );
 
       setResults(res.data);
