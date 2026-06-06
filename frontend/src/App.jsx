@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import Analytics from "./Analytics";
 import './App.css'
+import { loginUser } from "./api";
 
 function App() {
 
@@ -29,18 +30,23 @@ function App() {
 
   // ---------------- FUNCTIONS (सर्व सुरक्षित आहेत) ----------------
   const handleLogin = async () => {
-    try {
-      await axios.post("https://ai-interview-assistant-1-hwco.onrender.com/login", {
+  try {
+    const res = await axios.post(
+      "https://ai-interview-assistant-1-hwco.onrender.com/login",
+      {
         email,
         password
-      });
-      alert("Login Success 🚀");
-      setLoggedIn(true);
-    } catch (err) {
-      alert("Login Failed ❌");
-      console.log(err);
-    }
-  };
+      }
+    );
+
+    alert(res.data.message || "Login Success 🚀");
+    setLoggedIn(true);
+
+  } catch (err) {
+    console.log(err);
+    alert(err.response?.data?.message || "Login Failed ❌");
+  }
+};
 
   const uploadPDF = async () => {
     if (!file) {
